@@ -1,0 +1,144 @@
+/* https: //coolors.co/palette/606c38-283618-fefae0-dda15e-bc6c25 */
+:root {
+    --primary-color: #283618;
+    --secondary-color: #BC6C25;
+    --accent-color1: #606C38;
+    --accent-color2: #DDA15E;
+    --accent-color3: #FEFAE0;
+
+    --samll-size: 1rem;
+    --medium-size: 1.5rem;
+    --large-size: 2rem;
+    --massive-size: 5rem;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5{
+    font-family: 'Jost', sans-serif;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.responsive-img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/**************************
+****** MENU STYLE *********
+***************************/
+#main-menu {
+    position: fixed;
+    padding: var(--samll-size);
+    width: 100%;
+    z-index: 1;
+}
+
+#main-menu.scrolled{
+    background-color: rgb(40 54 24 / 95%);
+}
+
+nav {
+    display: none;
+    background-color: var(--accent-color1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    width: 250px;
+    height: 100vh;
+    z-index: 10000;
+}
+
+nav.open{
+    display: block;
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+}
+
+nav ul a{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: var(--samll-size);
+    text-align: center;
+    border-top: 1px solid var(--primary-color);
+}
+
+nav ul a.active, nav ul a:hover{
+    background-color: var(--primary-color);
+}
+
+#menu{
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-decoration: none;
+    font-size: 35px;
+}
+
+#menu::before{
+    content: "☰";
+}
+
+#menu.open::before {
+    content: "X";
+}
+
+/**************************
+****** FOOTER STYLE *******
+***************************/
+footer {
+    font-size: 0.95rem;
+    color: var(--primary-color);
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: auto 20% 30%;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: var(--medium-size);
+}
+
+footer section ul {
+    list-style: none;
+}
+
+footer section ul li::before {
+    content: "»";
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.footer-bottom {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: var(--medium-size);
+}
+
+.footer-bottom p>svg {
+    width: 35px;
+    height: auto;
+}
+
+.footer-bottom p>a {
+    color: #fff;
+}

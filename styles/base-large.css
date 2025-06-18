@@ -1,0 +1,42 @@
+/* https: //coolors.co/palette/606c38-283618-fefae0-dda15e-bc6c25 */
+
+/**************************
+****** MENU STYLE *********
+***************************/
+#main-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+nav {
+    position: relative;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+}
+
+nav ul{
+    flex-direction: row;
+    gap: 5px;
+}
+
+nav ul a{
+    display: inline-block;
+    border-top: none;
+    padding: 0.85rem var(--medium-size);
+}
+
+nav ul a.active,
+nav ul a:hover {
+    background-color: var(--accent-color1);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+#menu{
+   display: none;
+}
