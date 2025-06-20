@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Accueil | e-foncier.ci</title>
-        <meta name="description" content="Gestion et valorisation de parcelle en Côte d'Ivoire | ADC CONSULTING | Accueil">
+        <title>Parcelles | e-foncier.ci</title>
+        <meta name="description" content="Gestion et valorisation de parcelle en Côte d'Ivoire | ADC CONSULTING | Parcelles">
         <meta name="author" content="Kouame Alexandre Paul">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="images/favicon.png" sizes="32x32" type="image/png">
@@ -16,86 +16,129 @@
         <script src="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@700&family=Roboto&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
             <div id="main-menu">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="images/logo-e-foncier-blanc.svg" alt="Logo e foncier" width="250">
-                    </a>
-                    <a href="#" id="menu" aria-label="menu"></a>
-                </div>
-                
+                <a href="index.html">
+                    <img src="images/logo-e-foncier-blanc.svg" alt="Logo e foncier" width="200">
+                </a>
+                <a href="#" id="menu" aria-label="menu"></a>
                 <nav>
                     <ul>
-                        <li><a href="index.html" class="active">Accueil</a></li>
-                        <li><a href="parcelles.html">Parcelles</a></li>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="parcelles.html" class="active">Parcelles</a></li>
                         <li><a href="#">Experts</a></li>
                         <li><a href="#">Plan</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                     <ul>
-                        <li><a href="">Se connecter</a></li>
-                        <li><a href="">S'inscrire</a></li>
+                        <li><a href="#">Se connecter</a></li>
+                        <li><a href="#">S'inscrire</a></li>
                     </ul>
                 </nav>
             </div>
-            <div class="hero">
-
-            </div>
         </header>
         <main>
-            <div class="container">
-                <div class="map-container">
-                    <div class="loading" id="loading">
-                        <div>Loading 3D terrain...</div>
-                    </div>
-            
-                    <div class="map-controls">
-                        <div class="control-group">
-                            <h4>Controls</h4>
-                            <button class="toggle-button" id="toggle3D">Enable 3D Terrain</button>
-                            <button class="toggle-button" id="toggleBuildings">Show 3D Buildings</button>
+            <section class="main-header">
+                <h1>Vous cherchez un terrain à acheter ou à louer ?</h1>
+                <img src="images/portion-de-terre.webp" alt="Land Picture">
+            </section>
+            <div class="container-map">
+                <div id="map"></div>
+                <div id="land-list">
+                    <div class="land-card">
+                        <div class="land-card-header">
+                            <img src="images/adonkoi1.jpg" alt="Land Picture" loading="lazy" class="responsive-img">
                         </div>
-            
-                        <div class="control-group">
-                            <h4>Map Style</h4>
-                            <div class="style-selector">
-                                <button class="style-button active" data-style="streets">Streets</button>
-                                <button class="style-button" data-style="satellite">Satellite</button>
-                                <button class="style-button" data-style="satellite-streets">Satellite Streets</button>
-                                <button class="style-button" data-style="outdoors">Outdoors</button>
-                            </div>
+                        <div class="land-card-content">
+                            <h2 class="title">Adonkoi 1</h2>
+                            <p class="superficies">500/400 m2</p>
+                            <p class="owner">adc consulting</p>
                         </div>
                     </div>
-            
-                    <div id="map"></div>
+                    <div class="land-card">
+                        <div class="land-card-header">
+                            <img src="images/adonkoi1.jpg" alt="Land Picture" loading="lazy" class="responsive-img">
+                        </div>
+                        <div class="land-card-content">
+                            <h2 class="title">Adonkoi 1</h2>
+                            <p class="superficies">500/400 m2</p>
+                            <p class="owner">adc consulting</p>
+                        </div>
+                    </div>
+                    <div class="land-card">
+                        <div class="land-card-header">
+                            <img src="images/adonkoi1.jpg" alt="Land Picture" loading="lazy" class="responsive-img">
+                        </div>
+                        <div class="land-card-content">
+                            <h2 class="title">Adonkoi 1</h2>
+                            <p class="superficies">500/400 m2</p>
+                            <p class="owner">adc consulting</p>
+                        </div>
+                    </div>
+                    <div class="land-card">
+                        <div class="land-card-header">
+                            <img src="images/adonkoi1.jpg" alt="Land Picture" loading="lazy" class="responsive-img">
+                        </div>
+                        <div class="land-card-content">
+                            <h2 class="title">Adonkoi 1</h2>
+                            <p class="superficies">500/400 m2</p>
+                            <p class="owner">adc consulting</p>
+                        </div>
+                    </div>
+                    <div class="land-card">
+                        <div class="land-card-header">
+                            <img src="images/adonkoi1.jpg" alt="Land Picture" loading="lazy" class="responsive-img">
+                        </div>
+                        <div class="land-card-content">
+                            <h2 class="title">Adonkoi 1</h2>
+                            <p class="superficies">500/400 m2</p>
+                            <p class="owner">adc consulting</p>
+                        </div>
+                    </div>
+                    <div class="land-card">
+                        <div class="land-card-header">
+                            <img src="images/adonkoi1.jpg" alt="Land Picture" loading="lazy" class="responsive-img">
+                        </div>
+                        <div class="land-card-content">
+                            <h2 class="title">Adonkoi 1</h2>
+                            <p class="superficies">500/400 m2</p>
+                            <p class="price">5 0000 000 / 3 000 000 FCFA</p>
+                            <p class="owner">adc consulting</p>
+                        </div>
+                    </div>
+                    <div class="land-card">
+                        <div class="land-card-header">
+                            <img src="images/adonkoi1.jpg" alt="Land Picture" loading="lazy" class="responsive-img">
+                        </div>
+                        <div class="land-card-content">
+                            <h2 class="title">Adonkoi 1</h2>
+                            <p class="superficies">500/400 m2</p>
+                            <p class="owner">adc consulting</p>
+                        </div>
+                    </div>
+                    <div class="land-card">
+                        <div class="land-card-header">
+                            <img src="images/adonkoi1.jpg" alt="Land Picture" loading="lazy" class="responsive-img">
+                        </div>
+                        <div class="land-card-content">
+                            <h2 class="title">Adonkoi 1</h2>
+                            <p class="superficies">500/400 m2</p>
+                            <p class="owner">adc consulting</p>
+                        </div>
+                    </div>
                 </div>
-            
-                <div class="info-panel">
-            
-                    <div class="stats">
-                        <div class="stat-card">
-                            <div class="stat-value" id="totalParcels">0</div>
-                            <div class="stat-label">Total Parcels</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="totalArea">0</div>
-                            <div class="stat-label">Total Area (acres)</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="avgPrice">$0</div>
-                            <div class="stat-label">Average Price</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="totalValue">$0</div>
-                            <div class="stat-label">Total Value</div>
-                        </div>
-                    </div>
-                </div>  </div>
+            </div>
         </main>
+        <dialog id="dialogBox">
+            <div>
+                <h3>Visitor</h3>
+                <button>X</button>
+            </div>
+            <p></p>
+        </dialog>
         <footer>
             <div class="footer-top">
                 <section>
@@ -155,465 +198,6 @@
             </div>
         </footer>
         <script src="scripts/base.js" async defer></script>
-        <script>
-            // Mapbox access token (using a demo token - replace with your own)
-            mapboxgl.accessToken = 'pk.eyJ1IjoiZGVscGlwaSIsImEiOiJjbGd6MTAxZDEwZXdyM2pwbnM0Y3dyMDN0In0.YdF9zdrSgDbp7cz_aj6NCw';
-
-            // Sample land data in GeoJSON format
-            const landData = {
-                "type": "FeatureCollection",
-                "features": [
-                {
-                        "type": "Feature",
-                        "properties": {
-                            "id": 1,
-                            "name": "Ferme de Yamoussoukro",
-                            "landType": "Agricole",
-                            "area": 52.5,
-                            "price": 800000,
-                            "owner": "Famille Konan",
-                            "zoning": "AG-1",
-                            "description": "Terre fertile idéale pour les cultures vivrières et maraîchères."
-                        },
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [-5.2767, 6.8170]
-                        }
-                    },
-                    {
-                        "type": "Feature",
-                        "properties": {
-                            "id": 2,
-                            "name": "Parcelle résidentielle Riviera",
-                            "landType": "Résidentiel",
-                            "area": 1.0,
-                            "price": 1500000,
-                            "owner": "SCI Abidjan Villas",
-                            "zoning": "R-1",
-                            "description": "Terrain résidentiel prêt à bâtir dans un quartier sécurisé."
-                        },
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [-3.9864, 5.3480]  // Abidjan (Riviera)
-                        }
-                    },
-                    {
-                        "type": "Feature",
-                        "properties": {
-                            "id": 3,
-                            "name": "Zone commerciale Cocody",
-                            "landType": "Commercial",
-                            "area": 3.2,
-                            "price": 4200000,
-                            "owner": "Investisseurs Côte d'Ivoire",
-                            "zoning": "C-2",
-                            "description": "Parcelle stratégique pour centre commercial ou supermarché."
-                        },
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [-3.9942, 5.3556]
-                        }
-                    },
-                    {
-                        "type": "Feature",
-                        "properties": {
-                            "id": 4,
-                            "name": "Zone industrielle San Pedro",
-                            "landType": "Industriel",
-                            "area": 20.5,
-                            "price": 2500000,
-                            "owner": "Zone Franche San Pedro",
-                            "zoning": "IND",
-                            "description": "Site adapté pour entrepôts ou transformation agro-industrielle."
-                        },
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [-6.6431, 4.7485]
-                        }
-                    },
-                    {
-                        "type": "Feature",
-                        "properties": {
-                            "id": 5,
-                            "name": "Parc de loisirs Bouaké",
-                            "landType": "Récréatif",
-                            "area": 18.7,
-                            "price": 600000,
-                            "owner": "Mairie de Bouaké",
-                            "zoning": "REC-1",
-                            "description": "Zone verte pour aire de jeux, pique-nique, et activités sportives."
-                        },
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [-5.5557, 7.6829]
-                        }
-                    }
-                ]
-            };
-
-            // Define colors for different land types
-            const landTypeColors = {
-                'Agricultural': '#28a745',
-                'Residential': '#dc3545',
-                'Commercial': '#ffc107',
-                'Industrial': '#17a2b8',
-                'Recreational': '#6f42c1'
-            };
-
-            // Initialize the map
-            const map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v12',
-                center: [-5.55, 7.54],
-                zoom: 11,
-                pitch: 0,
-                bearing: 0,
-                antialias: true
-            });
-
-            let terrain3DEnabled = false;
-            let buildingsEnabled = false;
-
-            map.on('load', () => {
-                // Add terrain source for 3D
-                map.addSource('mapbox-dem', {
-                    'type': 'raster-dem',
-                    'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-                    'tileSize': 512,
-                    'maxzoom': 14
-                });
-
-                // Add land parcels data source
-                map.addSource('land-parcels', {
-                    'type': 'geojson',
-                    'data': landData
-                });
-
-                // Add markers layer with different colors based on land type
-                map.addLayer({
-                    'id': 'land-parcels-layer',
-                    'type': 'circle',
-                    'source': 'land-parcels',
-                    'paint': {
-                        'circle-radius': [
-                            'interpolate',
-                            ['linear'],
-                            ['zoom'],
-                            10, 8,
-                            15, 15
-                        ],
-                        'circle-color': [
-                            'case',
-                            ['==', ['get', 'landType'], 'Agricultural'], landTypeColors.Agricultural,
-                            ['==', ['get', 'landType'], 'Residential'], landTypeColors.Residential,
-                            ['==', ['get', 'landType'], 'Commercial'], landTypeColors.Commercial,
-                            ['==', ['get', 'landType'], 'Industrial'], landTypeColors.Industrial,
-                            ['==', ['get', 'landType'], 'Recreational'], landTypeColors.Recreational,
-                            '#cccccc'
-                        ],
-                        'circle-stroke-width': 2,
-                        'circle-stroke-color': '#ffffff',
-                        'circle-opacity': 0.8
-                    }
-                });
-
-                // Add labels layer
-                map.addLayer({
-                    'id': 'land-parcels-labels',
-                    'type': 'symbol',
-                    'source': 'land-parcels',
-                    'layout': {
-                        'text-field': ['get', 'name'],
-                        'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-                        'text-offset': [0, 1.5],
-                        'text-anchor': 'top',
-                        'text-size': 12
-                    },
-                    'paint': {
-                        'text-color': '#333333',
-                        'text-halo-color': '#ffffff',
-                        'text-halo-width': 1
-                    }
-                });
-
-                // Create popups for land parcels
-                map.on('click', 'land-parcels-layer', (e) => {
-                    const properties = e.features[0].properties;
-                    const coordinates = e.features[0].geometry.coordinates.slice();
-
-                    const popupContent = `
-                                <div style="font-family: Arial, sans-serif; max-width: 320px;">
-                                    <h3 style="margin: 0 0 12px 0; color: ${landTypeColors[properties.landType]}; font-size: 1.2rem;">
-                                        ${properties.name}
-                                    </h3>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
-                                        <div><strong>Type:</strong><br>${properties.landType}</div>
-                                        <div><strong>Area:</strong><br>${properties.area} acres</div>
-                                        <div><strong>Price:</strong><br>$${properties.price.toLocaleString()}</div>
-                                        <div><strong>Zoning:</strong><br>${properties.zoning}</div>
-                                    </div>
-                                    <div style="margin-bottom: 10px;">
-                                        <strong>Owner:</strong> ${properties.owner}
-                                    </div>
-                                    <div style="margin-bottom: 12px; font-size: 0.9rem; color: #666;">
-                                        ${properties.description}
-                                    </div>
-                                    <div style="padding: 10px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 6px; text-align: center;">
-                                        <strong>Price per acre:</strong> $${Math.round(properties.price / properties.area).toLocaleString()}
-                                    </div>
-                                </div>
-                            `;
-
-                    // Ensure popup coordinates are valid
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                    }
-
-                    new mapboxgl.Popup({ closeButton: true, closeOnClick: false })
-                        .setLngLat(coordinates)
-                        .setHTML(popupContent)
-                        .addTo(map);
-                });
-
-                // Change cursor on hover
-                map.on('mouseenter', 'land-parcels-layer', () => {
-                    map.getCanvas().style.cursor = 'pointer';
-                });
-
-                map.on('mouseleave', 'land-parcels-layer', () => {
-                    map.getCanvas().style.cursor = '';
-                });
-            });
-
-            // 3D Terrain toggle
-            document.getElementById('toggle3D').addEventListener('click', function () {
-                terrain3DEnabled = !terrain3DEnabled;
-
-                if (terrain3DEnabled) {
-                    document.getElementById('loading').style.display = 'block';
-
-                    // Enable 3D terrain
-                    map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
-
-                    // Animate to a tilted view
-                    map.easeTo({
-                        pitch: 60,
-                        bearing: -17.6,
-                        duration: 2000
-                    });
-
-                    this.textContent = 'Disable 3D Terrain';
-                    this.classList.add('active');
-
-                    setTimeout(() => {
-                        document.getElementById('loading').style.display = 'none';
-                    }, 2000);
-                } else {
-                    // Disable 3D terrain
-                    map.setTerrain(null);
-
-                    // Return to flat view
-                    map.easeTo({
-                        pitch: 0,
-                        bearing: 0,
-                        duration: 1000
-                    });
-
-                    this.textContent = 'Enable 3D Terrain';
-                    this.classList.remove('active');
-                }
-            });
-
-            // 3D Buildings toggle
-            document.getElementById('toggleBuildings').addEventListener('click', function () {
-                buildingsEnabled = !buildingsEnabled;
-
-                if (buildingsEnabled) {
-                    // Add 3D buildings layer
-                    map.addLayer({
-                        'id': '3d-buildings',
-                        'source': 'composite',
-                        'source-layer': 'building',
-                        'filter': ['==', 'extrude', 'true'],
-                        'type': 'fill-extrusion',
-                        'minzoom': 15,
-                        'paint': {
-                            'fill-extrusion-color': '#aaa',
-                            'fill-extrusion-height': [
-                                'interpolate',
-                                ['linear'],
-                                ['zoom'],
-                                15, 0,
-                                15.05, ['get', 'height']
-                            ],
-                            'fill-extrusion-base': [
-                                'interpolate',
-                                ['linear'],
-                                ['zoom'],
-                                15, 0,
-                                15.05, ['get', 'min_height']
-                            ],
-                            'fill-extrusion-opacity': 0.6
-                        }
-                    });
-
-                    this.textContent = 'Hide 3D Buildings';
-                    this.classList.add('active');
-                } else {
-                    // Remove 3D buildings layer
-                    if (map.getLayer('3d-buildings')) {
-                        map.removeLayer('3d-buildings');
-                    }
-
-                    this.textContent = 'Show 3D Buildings';
-                    this.classList.remove('active');
-                }
-            });
-
-            // Style switcher
-            const styleButtons = document.querySelectorAll('.style-button');
-            const styles = {
-                'streets': 'mapbox://styles/mapbox/streets-v12',
-                'satellite': 'mapbox://styles/mapbox/satellite-v9',
-                'satellite-streets': 'mapbox://styles/mapbox/satellite-streets-v12',
-                'outdoors': 'mapbox://styles/mapbox/outdoors-v12'
-            };
-
-            styleButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const style = this.dataset.style;
-
-                    // Update active button
-                    styleButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-
-                    // Change map style
-                    map.setStyle(styles[style]);
-
-                    // Re-add layers when style loads
-                    map.once('styledata', () => {
-                        // Re-add terrain source
-                        if (!map.getSource('mapbox-dem')) {
-                            map.addSource('mapbox-dem', {
-                                'type': 'raster-dem',
-                                'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-                                'tileSize': 512,
-                                'maxzoom': 14
-                            });
-                        }
-
-                        // Re-add land parcels
-                        if (!map.getSource('land-parcels')) {
-                            map.addSource('land-parcels', {
-                                'type': 'geojson',
-                                'data': landData
-                            });
-
-                            // Re-add layers
-                            map.addLayer({
-                                'id': 'land-parcels-layer',
-                                'type': 'circle',
-                                'source': 'land-parcels',
-                                'paint': {
-                                    'circle-radius': [
-                                        'interpolate',
-                                        ['linear'],
-                                        ['zoom'],
-                                        10, 8,
-                                        15, 15
-                                    ],
-                                    'circle-color': [
-                                        'case',
-                                        ['==', ['get', 'landType'], 'Agricultural'], landTypeColors.Agricultural,
-                                        ['==', ['get', 'landType'], 'Residential'], landTypeColors.Residential,
-                                        ['==', ['get', 'landType'], 'Commercial'], landTypeColors.Commercial,
-                                        ['==', ['get', 'landType'], 'Industrial'], landTypeColors.Industrial,
-                                        ['==', ['get', 'landType'], 'Recreational'], landTypeColors.Recreational,
-                                        '#cccccc'
-                                    ],
-                                    'circle-stroke-width': 2,
-                                    'circle-stroke-color': '#ffffff',
-                                    'circle-opacity': 0.8
-                                }
-                            });
-
-                            map.addLayer({
-                                'id': 'land-parcels-labels',
-                                'type': 'symbol',
-                                'source': 'land-parcels',
-                                'layout': {
-                                    'text-field': ['get', 'name'],
-                                    'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-                                    'text-offset': [0, 1.5],
-                                    'text-anchor': 'top',
-                                    'text-size': 12
-                                },
-                                'paint': {
-                                    'text-color': '#333333',
-                                    'text-halo-color': '#ffffff',
-                                    'text-halo-width': 1
-                                }
-                            });
-                        }
-
-                        // Restore 3D terrain if it was enabled
-                        if (terrain3DEnabled) {
-                            map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
-                        }
-
-                        // Restore 3D buildings if they were enabled
-                        if (buildingsEnabled && !map.getLayer('3d-buildings')) {
-                            map.addLayer({
-                                'id': '3d-buildings',
-                                'source': 'composite',
-                                'source-layer': 'building',
-                                'filter': ['==', 'extrude', 'true'],
-                                'type': 'fill-extrusion',
-                                'minzoom': 15,
-                                'paint': {
-                                    'fill-extrusion-color': '#aaa',
-                                    'fill-extrusion-height': [
-                                        'interpolate',
-                                        ['linear'],
-                                        ['zoom'],
-                                        15, 0,
-                                        15.05, ['get', 'height']
-                                    ],
-                                    'fill-extrusion-base': [
-                                        'interpolate',
-                                        ['linear'],
-                                        ['zoom'],
-                                        15, 0,
-                                        15.05, ['get', 'min_height']
-                                    ],
-                                    'fill-extrusion-opacity': 0.6
-                                }
-                            });
-                        }
-                    });
-                });
-            });
-
-            // Calculate and display statistics
-            function updateStats() {
-                const totalParcels = landData.features.length;
-                const totalArea = landData.features.reduce((sum, feature) => sum + feature.properties.area, 0);
-                const totalValue = landData.features.reduce((sum, feature) => sum + feature.properties.price, 0);
-                const avgPrice = totalValue / totalParcels;
-
-                document.getElementById('totalParcels').textContent = totalParcels;
-                document.getElementById('totalArea').textContent = totalArea.toFixed(1);
-                document.getElementById('avgPrice').textContent = '$' + Math.round(avgPrice).toLocaleString();
-                document.getElementById('totalValue').textContent = '$' + totalValue.toLocaleString();
-            }
-
-            // Update statistics
-            updateStats();
-
-            // Add navigation controls
-            map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
-            map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
-        </script>
-        <script src="scripts/parcelle.js" async defer></script>
+        <script src="scripts/parcelle.js" type="module"></script>
     </body>
 </html>

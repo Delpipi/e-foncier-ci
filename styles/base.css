@@ -6,7 +6,7 @@
     --accent-color2: #DDA15E;
     --accent-color3: #FEFAE0;
 
-    --samll-size: 1rem;
+    --small-size: 1rem;
     --medium-size: 1.5rem;
     --large-size: 2rem;
     --massive-size: 5rem;
@@ -18,12 +18,52 @@
     box-sizing: border-box;
 }
 
+
 h1,h2,h3,h4,h5{
     font-family: 'Jost', sans-serif;
+    font-weight: 700;
 }
 
 body{
     font-family: 'Roboto', sans-serif;
+}
+
+dialog {
+    position: fixed;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    width: 80%;
+    transform: translateY(-50%);
+    border-radius: 10px;
+    border: none;
+}
+
+#dialogBox div {
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px;
+}
+
+#dialogBox button {
+    border: none;
+    background-color: var(--accent-color);
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: #FF0000;
+    font-weight: bold;
+}
+
+#dialogBox p {
+    line-height: 20px;
+    text-align: justify;
+    padding: 1rem;
+}
+
+::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .responsive-img{
@@ -36,13 +76,14 @@ body{
 ****** MENU STYLE *********
 ***************************/
 #main-menu {
-    position: fixed;
-    padding: var(--samll-size);
+    position: relative;
+    padding: var(--small-size);
     width: 100%;
-    z-index: 100000;
+    z-index: 40;
 }
 
 #main-menu.scrolled{
+    position: fixed;
     background-color: rgb(40 54 24 / 95%);
 }
 
@@ -55,7 +96,7 @@ nav {
     overflow-y: auto;
     width: 250px;
     height: 100vh;
-    z-index: 10000;
+    z-index: 50;
 }
 
 nav.open{
@@ -66,14 +107,13 @@ nav ul{
     list-style: none;
     display: flex;
     flex-direction: column;
-
 }
 
 nav ul a{
     display: block;
     color: #fff;
     text-decoration: none;
-    padding: var(--samll-size);
+    padding: var(--small-size);
     text-align: center;
     border-top: 1px solid var(--primary-color);
 }
@@ -141,4 +181,28 @@ footer section ul li::before {
 
 .footer-bottom p>a {
     color: #fff;
+}
+
+/*******************************
+****** GENERAL KEYFRAMES *******
+********************************/
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    25% {
+        transform: translateY(-10px);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    75% {
+        transform: translateY(-15px);
+    }
 }
