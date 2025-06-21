@@ -1,55 +1,36 @@
-import { getLandDataList, getMillisecondsInDay } from "./api.mjs";
+import { getLandDataList } from "./api.mjs";
 
-const visitDialog = document.querySelector('#dialogBox');
-const closeDialog = document.querySelector('#dialogBox button');
-const dialogMessage = document.querySelector('#dialogBox p');
-
-const today = Date.now();
-
-let lastVisited = Number(localStorage.getItem('last-visit-day'));
-
-closeDialog.addEventListener('click', () => {
-    visitDialog.close();
-});
-
-function initLastVisited() {
-    lastVisited = Date.now();
-    localStorage.setItem('last-visit-day', lastVisited);
-}
-
-function getDialogMessage(numberOfDays) {
-    if (numberOfDays === 1) {
-        return `You last visited ${numberOfDays} day ago`;
-    } else {
-        return `You last visited ${numberOfDays} days ago`;
-    }
-}
-
-function showMessage() {
-    //check if this visitor already visited the page
-    if (lastVisited > 0 && !isNaN(lastVisited)) {
-        //this visitor already visited the page
-        const millisecondsInDay = getMillisecondsInDay();
-        const numberOfDays = Math.floor((today - lastVisited) / millisecondsInDay);
-        //console.log(`Number Of Days: ${numberOfDays}`);
-        if (numberOfDays > 0) {
-            dialogMessage.textContent = getDialogMessage(numberOfDays);
-            initLastVisited();
-        } else if (numberOfDays === 0) {
-            dialogMessage.textContent = `Back so soon! Awesome!`;
-        }
-    } else {
-        dialogMessage.textContent = `Welcome! Let us know if you have any questions.`;
-        initLastVisited();
-    }
-    visitDialog.showModal();
-}
+const landContainer = document.querySelector('#land-list');
 
 // Mapbox access token using for demo
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGVscGlwaSIsImEiOiJjbWM1N3R4NHowbzNqMmpzYWhnZjRlOW1pIn0.XLAB6iCzNW9S7-v5bb6xow';
 
 // Get land data in GeoJSON format
 const landData = await getLandDataList();
+
+//build land
+function buildLand(land) {
+    return `
+        <div class="land-card">
+            <div class="land-card-header">
+                <img src="images/adonkoi1.jpg" alt="Land Picture" loading="lazy" class="responsive-img">
+            </div>
+            <div class="land-card-content">
+                <h2 class="title">${land.properties.name}</h2>
+                <p class="superficies">${land.properties.area}</p>
+                <p class="price">${land.properties.price}</p>
+                <p class="owner">${land.properties.owner}</p>
+            </div>
+        </div>
+    `;
+}
+
+function renderLandList() {
+    landContainer.innerHTML = landData.features.map(feature => buildLand(feature)).join("");
+}
+
+//Render LandList
+renderLandList();
 
 // *** ADD THIS: Process the data to add formatted prices ***
 landData.features.forEach(feature => {
@@ -76,10 +57,28 @@ function formatPrice(priceString) {
             return number.toString();
         };
         
-        return `${formatToK(price1)}/${formatToK(price2)} FCFA`;
+        return `${formatToK(price1)} / ${formatToK(price2)} FCFA`;
     }
     
     return priceString; // Return original if format doesn't match
+}
+
+//Function to create speech bubble HTML
+function createSpeechBubble(price) {
+    const div = document.createElement('div');
+    div.className = 'price-bubble';
+    div.innerHTML = `
+        <div class="bubble-content">${price}</div>
+        <div class='bubble-arrow'></div>
+    `;
+    return div;
+}
+
+//Function to create marker dot
+function createMarkerDot() {
+    const div = document.createElement('div');
+    div.className = 'marker-dot';
+    return div;
 }
 
 // Initialize the map
@@ -90,66 +89,35 @@ const map = new mapboxgl.Map({
 });
 
 map.on('load', () => {
-    // Add land parcels data source
-    map.addSource('land-parcels', {
-        'type': 'geojson',
-        'data': landData
-    });
+    // Add markers with speech bubbles
+    landData.features.forEach(feature => {
+        const coordinates = feature.geometry.coordinates;
+        const formattedPrice = formatPrice(feature.properties.price);
 
-    // Add markers layer
-    map.addLayer({
-        'id': 'land-parcels-layer',
-        'type': 'circle',
-        'source': 'land-parcels',
-        'paint': {
-            'circle-radius': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
-                10, 8,
-                15, 15
-            ],
-            'circle-color': '#283618',
-            'circle-stroke-width': 2,
-            'circle-stroke-color': '#ffffff',
-            'circle-opacity': 1
-        }
-    });
+        //Create speech bubble
+        const speechBubble = createSpeechBubble(formattedPrice);
 
-     // Add price labels layer
-     map.addLayer({
-        'id': 'price-labels',
-        'type': 'symbol',
-        'source': 'land-parcels',
-        'layout': {
-            'text-field': ['get', 'formattedPrice'],
-            'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
-            'text-size': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
-                10, 10,
-                15, 14
-            ],
-            'text-offset': [0, -2], // Position above the marker
-            'text-anchor': 'bottom',
-            'text-allow-overlap': true,
-            'text-ignore-placement': true
-        },
-       'paint': {
-            'text-color': '#ffffff', // White text for better contrast on green
-            'text-halo-color': '#283618', // Green halo matching the background
-            'text-halo-width': 8, // Large halo to create circular effect
-            'text-halo-blur': 0, // No blur for sharp circle
-            'text-background-color': '#283618', // Green background
-            'text-background-opacity': 1, // Fully opaque
-            'text-background-padding': [6, 8, 6, 8] // More padding for circular shape
-        }
+        //Create marker dot
+        const marketDot = createMarkerDot();
+
+        //Add speech bubble marker
+        new mapboxgl.Marker({
+            element: speechBubble,
+            anchor: 'bottom'
+        })
+            .setLngLat(coordinates)
+            .addTo(map);
+        
+        //Add dot marker
+        new mapboxgl.Marker({
+            element: marketDot,
+            anchor: 'center'
+        })
+            .setLngLat(coordinates)
+            .addTo(map);
     });
 });
 
 // Add navigation controls
 map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
-
-showMessage();

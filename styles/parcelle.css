@@ -44,6 +44,23 @@
    display: none;
 }
 
+.price-bubble{
+    background-color: #ffff;
+    border-radius: 20px;
+    padding: 0.2rem 0.7rem;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.marker-dot{
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 #land-list{
     display: grid;
     grid-template-columns: 1fr;
