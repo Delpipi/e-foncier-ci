@@ -3,11 +3,12 @@
 ***************************/
 .main-header {
     grid-template-columns: 1fr 1fr;
+    align-items: center;
 }
 
 .main-header h1 {
     padding: var(--large-size);
-    font-size: 35px;
+    font-size: 20px;
 }
 
 /*====== container map style =======*/

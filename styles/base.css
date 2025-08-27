@@ -72,6 +72,54 @@ dialog {
     object-fit: cover;
 }
 
+/* Custom Swiper styles with Tailwind approach */
+.swiper {
+    width: 100%;
+    height: 400px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+    
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    overflow: hidden;
+}
+
+.swiper-pagination-bullet {
+    width: 12px !important;
+    height: 12px !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+    opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--primary-color) !important;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+[inline-datepicker] *[aria-selected="true"],
+[inline-datepicker] *.selected,
+[inline-datepicker] *[aria-pressed="true"],
+[inline-datepicker] button:focus {
+    background-color: var(--secondary-color) !important;
+    color: #000 !important;
+}
+
+#map{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+     
 /**************************
 ****** MENU STYLE *********
 ***************************/
@@ -89,7 +137,6 @@ dialog {
 
 nav {
     display: none;
-    background-color: var(--accent-color1);
     position: absolute;
     top: 0;
     left: 0;
@@ -111,21 +158,21 @@ nav ul{
 
 nav ul a{
     display: block;
-    color: #fff;
+    color:#fff;
     text-decoration: none;
-    padding: var(--small-size);
     text-align: center;
-    border-top: 1px solid var(--primary-color);
+    opacity: 0.2;
 }
 
 nav ul a.active, nav ul a:hover{
-    background-color: var(--primary-color);
+   color: #fff;
+    opacity: 1;
 }
 
 #menu{
     color: #fff;
     position: absolute;
-    top: 20px;
+    top: 8px;
     right: 20px;
     text-decoration: none;
     font-size: 35px;
@@ -143,44 +190,12 @@ nav ul a.active, nav ul a:hover{
 ****** FOOTER STYLE *******
 ***************************/
 footer {
-    font-size: 0.95rem;
-    color: var(--primary-color);
-}
-
-.footer-top {
-    display: grid;
-    grid-template-columns: auto 20% 30%;
-    justify-content: space-evenly;
-    gap: 20px;
-    padding: var(--medium-size);
-}
-
-footer section ul {
-    list-style: none;
-}
-
-footer section ul li::before {
-    content: "»";
-    font-size: 20px;
-    margin-right: 5px;
-}
-
-.footer-bottom {
-    background-color: #000;
-    color: #fff;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: var(--medium-size);
-}
-
-.footer-bottom p>svg {
-    width: 35px;
-    height: auto;
-}
-
-.footer-bottom p>a {
     color: #fff;
+    background-color: #000;
+    justify-content: space-evenly;
+    padding: var(--small-size);
+    margin-top: var(--large-size);
 }
 
 /*******************************

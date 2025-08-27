@@ -14,10 +14,11 @@ nav {
     position: relative;
     background-color: transparent;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
     height: auto;
+    padding: 0 var(--massive-size);
 }
 
 nav ul{
@@ -28,13 +29,12 @@ nav ul{
 nav ul a{
     display: inline-block;
     border-top: none;
-    padding: 0.85rem var(--medium-size);
+    padding-right: var(--small-size);
 }
 
 nav ul a.active,
 nav ul a:hover {
-    background-color: var(--accent-color1);
-    border-bottom: 2px solid var(--primary-color);
+color: #fff;
 }
 
 #menu{

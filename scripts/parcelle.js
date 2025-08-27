@@ -8,10 +8,65 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZGVscGlwaSIsImEiOiJjbWM1N3R4NHowbzNqMmpzYWhnZ
 // Get land data in GeoJSON format
 const landData = await getLandDataList();
 
+// Process data to separate points and polygons
+function processLandData(data) {
+    const processedData = {
+        type: "FeatureCollection",
+        features: []
+    };
+
+    data.features.forEach(feature => {
+        const processedFeature = {
+            type: "Feature",
+            properties: {
+                ...feature.properties,
+                polygon: feature.properties.polygon || null,
+                id: feature.properties.name.replace(/\s+/g, '_').toLowerCase()
+            },
+            geometry: null
+        };
+
+        if (Array.isArray(feature.geometry)) {
+            feature.geometry.forEach(geom => {
+                if (geom.type === "Point") {
+                    processedFeature.geometry = geom;
+                }
+            });
+        } else if (feature.geometry.type === "Point") {
+            processedFeature.geometry = feature.geometry;
+        }
+
+        // ⚠️ NE PAS remplacer un vrai polygone déjà défini
+        if (!processedFeature.properties.polygon && processedFeature.geometry) {
+            const [lng, lat] = processedFeature.geometry.coordinates;
+            const offset = 0.002;
+            processedFeature.properties.polygon = {
+                type: "Polygon",
+                coordinates: [[
+                    [lng - offset, lat + offset],
+                    [lng + offset, lat + offset],
+                    [lng + offset, lat - offset],
+                    [lng - offset, lat - offset],
+                    [lng - offset, lat + offset]
+                ]]
+            };
+        }
+
+        processedFeature.properties.formattedPrice = formatPrice(feature.properties.price);
+        processedData.features.push(processedFeature);
+    });
+
+    return processedData;
+}
+
+
+// Process the land data
+const processedLandData = processLandData(landData);
+
 //build land
 function buildLand(land) {
     return `
-        <div class="land-card">
+        <div class="land-card" data-land-id="${land.properties.id}">
             <div class="land-card-header">
                 <img src="images/adonkoi1.jpg" alt="Land Picture" loading="lazy" class="responsive-img">
             </div>
@@ -20,22 +75,17 @@ function buildLand(land) {
                 <p class="superficies">${land.properties.area}</p>
                 <p class="price">${land.properties.price}</p>
                 <p class="owner">${land.properties.owner}</p>
+                <button class="view-details-btn" onclick="openDetailPage('${land.properties.id}')">
+                    Voir les détails
+                </button>
             </div>
         </div>
     `;
 }
 
 function renderLandList() {
-    landContainer.innerHTML = landData.features.map(feature => buildLand(feature)).join("");
+    landContainer.innerHTML = processedLandData.features.map(feature => buildLand(feature)).join("");
 }
-
-//Render LandList
-renderLandList();
-
-// *** ADD THIS: Process the data to add formatted prices ***
-landData.features.forEach(feature => {
-    feature.properties.formattedPrice = formatPrice(feature.properties.price);
-});
 
 // Function to format price text
 function formatPrice(priceString) {
@@ -64,22 +114,56 @@ function formatPrice(priceString) {
 }
 
 //Function to create speech bubble HTML
-function createSpeechBubble(price) {
+function createSpeechBubble(price, landId) {
     const div = document.createElement('div');
     div.className = 'price-bubble';
+    div.style.cursor = 'pointer';
     div.innerHTML = `
         <div class="bubble-content">${price}</div>
         <div class='bubble-arrow'></div>
     `;
+    
+    // Add click handler to open detail page
+    div.addEventListener('click', () => {
+        openDetailPage(landId);
+    });
+    
     return div;
 }
 
 //Function to create marker dot
-function createMarkerDot() {
+function createMarkerDot(landId) {
     const div = document.createElement('div');
     div.className = 'marker-dot';
+    div.style.cursor = 'pointer';
+    
+    // Add click handler to open detail page
+    div.addEventListener('click', () => {
+        openDetailPage(landId);
+    });
+    
     return div;
 }
+
+// Function to open detail page
+function openDetailPage(landId) {
+    // Find the land data
+    const landFeature = processedLandData.features.find(f => f.properties.id === landId);
+    
+    if (!landFeature) {
+        console.error('Land not found:', landId);
+        return;
+    }
+    
+    // Store land data in localStorage for the detail page
+    localStorage.setItem('selectedLandData', JSON.stringify(landFeature));
+    
+    // Open detail page in new window/tab
+    window.open(`detail.html?id=${landId}`, '_blank');
+}
+
+// Make function global for onclick handlers
+window.openDetailPage = openDetailPage;
 
 // Initialize the map
 const map = new mapboxgl.Map({
@@ -90,15 +174,16 @@ const map = new mapboxgl.Map({
 
 map.on('load', () => {
     // Add markers with speech bubbles
-    landData.features.forEach(feature => {
+    processedLandData.features.forEach(feature => {
         const coordinates = feature.geometry.coordinates;
-        const formattedPrice = formatPrice(feature.properties.price);
+        const formattedPrice = feature.properties.formattedPrice;
+        const landId = feature.properties.id;
 
         //Create speech bubble
-        const speechBubble = createSpeechBubble(formattedPrice);
+        const speechBubble = createSpeechBubble(formattedPrice, landId);
 
         //Create marker dot
-        const marketDot = createMarkerDot();
+        const marketDot = createMarkerDot(landId);
 
         //Add speech bubble marker
         new mapboxgl.Marker({
@@ -121,3 +206,6 @@ map.on('load', () => {
 // Add navigation controls
 map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
+
+//Render LandList
+renderLandList();

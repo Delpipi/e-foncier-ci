@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de la parcelle</title>
+
+    <!-- Mapbox CSS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #283618;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .land-info {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #283618;
+        }
+
+        .info-item h3 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .info-item p {
+            color: #666;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .map-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        #detail-map {
+            height: 500px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+
+        .mapboxgl-canvas {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: optimize-contrast;
+            image-rendering: pixelated;
+        }
+
+        .back-btn {
+            background-color: #283618;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 20px;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .price-highlight {
+            background-color: #BC6C25;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+
+        .error {
+            text-align: center;
+            padding: 50px;
+            color: #d32f2f;
+            background: #ffebee;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .token-warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .token-warning strong {
+            color: #856404;
+        }
+
+        .mapboxgl-popup-content {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .media-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .media-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .slideshow-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .slideshow-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .prev,
+        .next {
+            background-color: #283618;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: #1a2410;
+        }
+
+        .slide-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .indicator.active {
+            background-color: #283618;
+        }
+
+        .video-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            object-fit: cover;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            color: #666;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .upload-section {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border: 2px dashed #ccc;
+        }
+
+        .upload-section h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .upload-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .upload-btn {
+            background-color: #BC6C25;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .upload-btn:hover {
+            background-color: #a55a1f;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            #detail-map {
+                height: 400px;
+            }
+
+            .slide img,
+            .video-container video {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="media-section">
+            <h2>📸 Galerie d'images</h2>
+        
+            <div class="slideshow-container">
+                <div class="slide active">
+                    <img src="https://img.freepik.com/free-photo/sunlight-sunny-land-scenic-weather_1127-2333.jpg?t=st=1752077829~exp=1752081429~hmac=9cd887fc73baaf1a77b044bf7e0e2ecd55ebce9c893333dd55a56065f1c43763&w=1380"
+                        alt="Vue du terrain 1">
+                    <div class="slide-caption">Vue générale du terrain</div>
+                </div>
+                <div class="slide">
+                    <img src="https://img.freepik.com/free-photo/grassland-landscape-greening-environment-park-background_1112-1183.jpg?t=st=1752078002~exp=1752081602~hmac=952b02e385724236da0ae1bc0e135d6a7058c844e7034e4737c5766807198e3a&w=1380"
+                        alt="Vue du terrain 2">
+                    <div class="slide-caption">Délimitation de la parcelle</div>
+                </div>
+                <div class="slide">
+                    <img src="https://img.freepik.com/free-photo/aerial-drone-view-nature-moldova-sown-fields-trees-distance-cloudy-sky_1268-16968.jpg?t=st=1752078039~exp=1752081639~hmac=3498b3139af0e716af49b975013f3fdc9985a2c4686284c211f74ea0b6411d4d&w=1380"
+                        alt="Vue du terrain 3">
+                    <div class="slide-caption">Accès et voirie</div>
+                </div>
+                <div class="slide">
+                    <img src="https://img.freepik.com/free-photo/grassland-landscape-greening-environment-park-background_1112-1181.jpg?t=st=1752078074~exp=1752081674~hmac=73eb47e2744d3a96cb544e486766dea73e1fa03b462b8db9a40a4d383355d4d6&w=1380"
+                        alt="Vue du terrain 4">
+                    <div class="slide-caption">Environnement proche</div>
+                </div>
+            </div>
+        
+            <div class="slideshow-controls">
+                <button class="prev" onclick="changeSlide(-1)">❮ Précédent</button>
+                <button class="next" onclick="changeSlide(1)">Suivant ❯</button>
+            </div>
+        
+            <div class="slide-indicators">
+                <span class="indicator active" onclick="currentSlide(1)"></span>
+                <span class="indicator" onclick="currentSlide(2)"></span>
+                <span class="indicator" onclick="currentSlide(3)"></span>
+                <span class="indicator" onclick="currentSlide(4)"></span>
+            </div>
+        
+            <!-- <div class="upload-section">
+                                <h3>Ajouter des images</h3>
+                                <input type="file" class="upload-input" accept="image/*" multiple id="imageUpload">
+                                <button class="upload-btn" onclick="uploadImages()">Télécharger</button>
+                            </div> -->
+        </div>
+        <h1 id="land-name">Chargement...</h1>
+        <p>Détails de la parcelle et tracé exact</p>
+    </div>
+
+    <div class="container">
+        <button class="back-btn" onclick="window.close()">← Retour</button>
+
+        <div class="token-warning">
+            <strong>⚠️ Configuration requise:</strong> Pour utiliser Mapbox, vous devez configurer votre token d'accès
+            Mapbox dans le code JavaScript ci-dessous.
+        </div>
+
+        <div id="loading" class="loading">
+            <p>Chargement des données...</p>
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            <p>Erreur lors du chargement des données de la parcelle.</p>
+        </div>
+
+        <div id="content" style="display: none;">
+            <div class="land-info">
+                <div class="price-highlight" id="price-display">
+                    Prix: --
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3>🏠 Nom de la parcelle</h3>
+                        <p id="land-name-detail">--</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3>📐 Superficie</h3>
+                        <p id="land-area">--</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3>👤 Propriétaire</h3>
+                        <p id="land-owner">--</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3>📍 Localisation</h3>
+                        <p id="land-location">--</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="media-section">
+                    <h2>📸 Galerie d'images</h2>
+
+                    <div class="slideshow-container">
+                        <div class="slide active">
+                            <img src="https://img.freepik.com/free-photo/sunlight-sunny-land-scenic-weather_1127-2333.jpg?t=st=1752077829~exp=1752081429~hmac=9cd887fc73baaf1a77b044bf7e0e2ecd55ebce9c893333dd55a56065f1c43763&w=1380"
+                                alt="Vue du terrain 1">
+                            <div class="slide-caption">Vue générale du terrain</div>
+                        </div>
+                        <div class="slide">
+                            <img src="https://img.freepik.com/free-photo/grassland-landscape-greening-environment-park-background_1112-1183.jpg?t=st=1752078002~exp=1752081602~hmac=952b02e385724236da0ae1bc0e135d6a7058c844e7034e4737c5766807198e3a&w=1380"
+                                alt="Vue du terrain 2">
+                            <div class="slide-caption">Délimitation de la parcelle</div>
+                        </div>
+                        <div class="slide">
+                            <img src="https://img.freepik.com/free-photo/aerial-drone-view-nature-moldova-sown-fields-trees-distance-cloudy-sky_1268-16968.jpg?t=st=1752078039~exp=1752081639~hmac=3498b3139af0e716af49b975013f3fdc9985a2c4686284c211f74ea0b6411d4d&w=1380"
+                                alt="Vue du terrain 3">
+                            <div class="slide-caption">Accès et voirie</div>
+                        </div>
+                        <div class="slide">
+                            <img src="https://img.freepik.com/free-photo/grassland-landscape-greening-environment-park-background_1112-1181.jpg?t=st=1752078074~exp=1752081674~hmac=73eb47e2744d3a96cb544e486766dea73e1fa03b462b8db9a40a4d383355d4d6&w=1380"
+                                alt="Vue du terrain 4">
+                            <div class="slide-caption">Environnement proche</div>
+                        </div>
+                    </div>
+
+                    <div class="slideshow-controls">
+                        <button class="prev" onclick="changeSlide(-1)">❮ Précédent</button>
+                        <button class="next" onclick="changeSlide(1)">Suivant ❯</button>
+                    </div>
+
+                    <div class="slide-indicators">
+                        <span class="indicator active" onclick="currentSlide(1)"></span>
+                        <span class="indicator" onclick="currentSlide(2)"></span>
+                        <span class="indicator" onclick="currentSlide(3)"></span>
+                        <span class="indicator" onclick="currentSlide(4)"></span>
+                    </div>
+
+                    <!-- <div class="upload-section">
+                        <h3>Ajouter des images</h3>
+                        <input type="file" class="upload-input" accept="image/*" multiple id="imageUpload">
+                        <button class="upload-btn" onclick="uploadImages()">Télécharger</button>
+                    </div> -->
+                </div>
+
+                <div class="map-container">
+                    <h2>Tracé exact de la parcelle</h2>
+                    <div id="detail-map"></div>
+                </div>
+            </div>
+
+            <!-- <div class="media-section">
+                <h2>🎬 Vidéo du site</h2>
+
+                <div class="video-container">
+                    <div class="video-placeholder" id="videoPlaceholder">
+                        <div>
+                            <p>📹 Aucune vidéo disponible</p>
+                            <p style="font-size: 14px; margin-top: 5px;">Téléchargez une vidéo du terrain</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h3>Ajouter une vidéo</h3>
+                    <input type="file" class="upload-input" accept="video/*" id="videoUpload">
+                    <button class="upload-btn" onclick="uploadVideo()">Télécharger</button>
+                    <button class="upload-btn" onclick="addVideoUrl()">Ajouter URL</button>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- Mapbox GL JS -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+
+    <script>
+        // ⚠️ IMPORTANT: Replace with your actual Mapbox access token
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZGVscGlwaSIsImEiOiJjbWM1N3R4NHowbzNqMmpzYWhnZjRlOW1pIn0.XLAB6iCzNW9S7-v5bb6xow';
+
+
+        // Get land data from localStorage
+        const landData = JSON.parse(localStorage.getItem('selectedLandData'));
+
+        if (!landData) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+        } else {
+            // Update page content
+            document.getElementById('land-name').textContent = landData.properties.name;
+            document.getElementById('land-name-detail').textContent = landData.properties.name;
+            document.getElementById('price-display').textContent = `Prix: ${landData.properties.price}`;
+            document.getElementById('land-area').textContent = landData.properties.area;
+            document.getElementById('land-owner').textContent = landData.properties.owner;
+
+            // Get coordinates for location display
+            const coords = landData.geometry.coordinates;
+            document.getElementById('land-location').textContent = `${coords[1].toFixed(4)}, ${coords[0].toFixed(4)}`;
+
+            // Show content
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+
+            // Initialize Mapbox map
+            const map = new mapboxgl.Map({
+                container: 'detail-map',
+                style: 'mapbox://styles/mapbox/satellite-streets-v12', // You can change this to other styles
+                center: coords,
+                zoom: 15,
+                antialias: true, // Enable antialiasing for smoother rendering
+                preserveDrawingBuffer: true, // Improve image quality
+                maxZoom: 22, // Allow higher zoom levels
+                pixelRatio: window.devicePixelRatio || 1 // Use device pixel ratio for crisp images
+            });
+
+            // Add navigation controls
+            map.addControl(new mapboxgl.NavigationControl());
+
+            // Add fullscreen control
+            map.addControl(new mapboxgl.FullscreenControl());
+
+            // Wait for map to load
+            map.on('load', function () {
+                // Force a resize to ensure proper rendering
+                setTimeout(() => {
+                    map.resize();
+                }, 100);
+
+                // Add point marker
+                const pointMarker = new mapboxgl.Marker({
+                    color: '#283618'
+                })
+                    .setLngLat(coords)
+                    .setPopup(
+                        new mapboxgl.Popup({
+                            offset: 25
+                        }).setHTML(`
+                        <div style="text-align: center; padding: 5px;">
+                            <strong>${landData.properties.name}</strong><br>
+                            <span style="color: #666;">${landData.properties.formattedPrice || landData.properties.price}</span>
+                        </div>
+                    `)
+                    )
+                    .addTo(map);
+
+                // Add polygon if available
+                if (landData.properties.polygon) {
+                    const polygon = landData.properties.polygon;
+
+                    // Add polygon source
+                    map.addSource('land-polygon', {
+                        type: 'geojson',
+                        data: {
+                            type: 'Feature',
+                            geometry: polygon
+                        }
+                    });
+
+                    // Add polygon fill layer
+                    map.addLayer({
+                        id: 'land-polygon-fill',
+                        type: 'fill',
+                        source: 'land-polygon',
+                        paint: {
+                            'fill-color': '#667eea',
+                            'fill-opacity': 0.3
+                        }
+                    });
+
+                    // Add polygon outline layer
+                    map.addLayer({
+                        id: 'land-polygon-outline',
+                        type: 'line',
+                        source: 'land-polygon',
+                        paint: {
+                            'line-color': '#667eea',
+                            'line-width': 3
+                        }
+                    });
+
+                    // Fit map to polygon bounds
+                    const coordinates = polygon.coordinates[0];
+
+                    // Create bounds object
+                    const bounds = new mapboxgl.LngLatBounds();
+                    coordinates.forEach(coord => bounds.extend(coord));
+
+                    // Fit map to bounds with better padding
+                    map.fitBounds(bounds, {
+                        padding: 50,
+                        linear: false,
+                        maxZoom: 18 // Prevent over-zooming which can cause blur
+                    });
+
+                    // Add click event to polygon
+                    map.on('click', 'land-polygon-fill', function (e) {
+                        new mapboxgl.Popup()
+                            .setLngLat(e.lngLat)
+                            .setHTML(`
+                                <div style="text-align: center; padding: 5px;">
+                                    <strong>Délimitation de la parcelle</strong><br>
+                                    <span style="color: #666;">${landData.properties.name}</span>
+                                </div>
+                            `)
+                            .addTo(map);
+                    });
+
+                    // Change cursor on hover
+                    map.on('mouseenter', 'land-polygon-fill', function () {
+                        map.getCanvas().style.cursor = 'pointer';
+                    });
+
+                    map.on('mouseleave', 'land-polygon-fill', function () {
+                        map.getCanvas().style.cursor = '';
+                    });
+                } else {
+                    // If no polygon, center on point with appropriate zoom
+                    map.setCenter(coords);
+                    map.setZoom(16);
+                }
+            });
+
+            // Handle window resize to maintain map quality
+            window.addEventListener('resize', () => {
+                map.resize();
+            });
+        }
+
+        // Slideshow functionality
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            if (currentSlideIndex >= slides.length) currentSlideIndex = 0;
+            if (currentSlideIndex < 0) currentSlideIndex = slides.length - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        // Auto-advance slideshow
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Upload functionality
+        function uploadImages() {
+            const input = document.getElementById('imageUpload');
+            const files = input.files;
+
+            if (files.length === 0) {
+                alert('Veuillez sélectionner au moins une image');
+                return;
+            }
+
+            // Here you would typically upload to a server
+            // For demo purposes, we'll just show a message
+            alert(`${files.length} image(s) sélectionnée(s) - Fonctionnalité de téléchargement à implémenter`);
+        }
+
+        function uploadVideo() {
+            const input = document.getElementById('videoUpload');
+            const file = input.files[0];
+
+            if (!file) {
+                alert('Veuillez sélectionner une vidéo');
+                return;
+            }
+
+            // Create video element
+            const video = document.createElement('video');
+            video.controls = true;
+            video.src = URL.createObjectURL(file);
+            video.style.width = '100%';
+            video.style.height = '300px';
+            video.style.borderRadius = '10px';
+            video.style.border = '2px solid #e9ecef';
+            video.style.objectFit = 'cover';
+
+            // Replace placeholder
+            const placeholder = document.getElementById('videoPlaceholder');
+            placeholder.parentNode.replaceChild(video, placeholder);
+        }
+
+        function addVideoUrl() {
+            const url = prompt('Entrez l\'URL de la vidéo (YouTube, Vimeo, etc.):');
+            if (!url) return;
+
+            let embedUrl = '';
+
+            // Handle YouTube URLs
+            if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                const videoId = url.includes('youtu.be') ?
+                    url.split('youtu.be/')[1] :
+                    url.split('v=')[1].split('&')[0];
+                embedUrl = `https://www.youtube.com/watch?v=xr8Xp8lAE7w`;
+            }
+            // Handle Vimeo URLs
+            else if (url.includes('vimeo.com')) {
+                const videoId = url.split('vimeo.com/')[1];
+                embedUrl = `https://player.vimeo.com/video/${videoId}`;
+            }
+            // Handle direct video URLs
+            else if (url.match(/\.(mp4|webm|ogg)$/i)) {
+                const video = document.createElement('video');
+                video.controls = true;
+                video.src = url;
+                video.style.width = '100%';
+                video.style.height = '300px';
+                video.style.borderRadius = '10px';
+                video.style.border = '2px solid #e9ecef';
+                video.style.objectFit = 'cover';
+
+                const placeholder = document.getElementById('videoPlaceholder');
+                placeholder.parentNode.replaceChild(video, placeholder);
+                return;
+            }
+            else {
+                alert('Format d\'URL non supporté. Utilisez YouTube, Vimeo ou un lien direct vers une vidéo.');
+                return;
+            }
+
+            // Create iframe for embedded videos
+            const iframe = document.createElement('iframe');
+            iframe.src = embedUrl;
+            iframe.style.width = '100%';
+            iframe.style.height = '300px';
+            iframe.style.borderRadius = '10px';
+            iframe.style.border = '2px solid #e9ecef';
+            iframe.allowFullscreen = true;
+
+            const placeholder = document.getElementById('videoPlaceholder');
+            placeholder.parentNode.replaceChild(iframe, placeholder);
+        }
+    </script>
+</body>
+
+</html>
