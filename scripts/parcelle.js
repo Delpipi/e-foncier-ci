@@ -79,8 +79,8 @@ function buildLand(land) {
                 
                 <p class="text-xs font-bold text-secondary mb-medium">${land.properties.price}</p>
                 <p class="text-sm"><i class="fa-solid fa-house mb-small"></i> ${land.properties.owner}</p>
-                <button class="w-full bg-accent-2 flex-1 hover:bg-secondary transition-colors duration-300 
-                                font-medium rounded-lg text-sm px-5 py-2 text-center onclick="openDetailPage('${land.properties.id}')">
+                <button class="landBtnDetail w-full bg-accent-2 flex-1 hover:bg-secondary transition-colors duration-300 
+                                font-medium rounded-lg text-sm px-5 py-2 text-center data-id="${land.properties.id}">
                     Voir les détails
                 </button>
             </div>
@@ -90,6 +90,12 @@ function buildLand(land) {
 
 function renderLandList() {
     landContainer.innerHTML = processedLandData.features.map(feature => buildLand(feature)).join("");
+    document.querySelectorAll('.landBtnDetail').forEach(button => {
+    button.addEventListener('click', function() {
+        const landId = this.getAttribute('data-id');
+        openDetailPage(landId);
+    });
+});
 }
 
 // Function to format price text
