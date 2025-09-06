@@ -1,0 +1,250 @@
+[
+  {
+    "id": "exp-10001",
+    "nom": "Dr. Kouadio Jean",
+    "photoProfil": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face",
+    "biographie": "Expert en évaluation foncière avec 15 ans d'expérience.",
+    "specialities": ["Évaluation foncière", "Étude de sol", "Urbanisme"],
+    "filtreSpecialite": ["gestion-valorisation-foncier", "amenagement-urbanisme"],
+    "langues": ["Français", "Anglais"],
+    "email": "j.kouadio@example.com",
+    "téléphone": "+22501020304",
+    "localisation": "Abidjan, Côte d'Ivoire",
+    "disponibilité": ["Lundi 9h-17h", "Mercredi 14h-18h"],
+    "certifications": ["certificat_evaluateur.pdf"],
+    "licenceProfessionnelle": "N° EXP-45678",
+    "statutVérification": "Vérifié",
+    "services": [
+      {
+        "idService": "srv-001",
+        "nomService": "Évaluation foncière",
+        "description": "Rapport complet sur la valeur marchande du terrain.",
+        "tarif": 50000
+      }
+    ],
+    "avis": [
+      { "utilisateur": "Client A", "note": 5, "commentaire": "Très professionnel." }
+    ],
+    "noteMoyenne": 4.5,
+    "dateInscription": "2025-08-20",
+    "dernièreConnexion": "2025-08-24",
+    "statutCompte": "Actif"
+  },
+  {
+    "id": "exp-10002",
+    "nom": "Mme. Adjoua Marie",
+    "photoProfil": "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=150&h=150&fit=crop&crop=face",
+    "biographie": "Spécialiste en urbanisme et aménagement territorial avec 12 ans d'expérience.",
+    "specialities": ["Urbanisme", "Aménagement territorial"],
+    "filtreSpecialite": ["amenagement-urbanisme"],
+    "langues": ["Français", "Anglais", "Espagnol"],
+    "email": "m.adjoua@example.com",
+    "téléphone": "+22501020305",
+    "localisation": "Yamoussoukro, Côte d'Ivoire",
+    "disponibilité": ["Mardi 8h-16h", "Jeudi 10h-18h"],
+    "certifications": ["certificat_urbanisme.pdf"],
+    "licenceProfessionnelle": "N° URB-78901",
+    "statutVérification": "Vérifié",
+    "services": [
+      {
+        "idService": "srv-003",
+        "nomService": "Plan d'urbanisme",
+        "description": "Élaboration de plans d'aménagement urbain.",
+        "tarif": 120000
+      }
+    ],
+    "avis": [
+      { "utilisateur": "Client C", "note": 5, "commentaire": "Excellente expertise." }
+    ],
+    "noteMoyenne": 5.0,
+    "dateInscription": "2025-07-15",
+    "dernièreConnexion": "2025-08-26",
+    "statutCompte": "Actif"
+  },
+  {
+    "id": "exp-10003",
+    "nom": "M. Bamba Seydou",
+    "photoProfil": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    "biographie": "Ingénieur géotechnique spécialisé dans l'étude des sols.",
+    "specialities": ["Étude de sol", "Géotechnique"],
+    "filtreSpecialite": ["geometre-topographie-cadastre"],
+    "langues": ["Français"],
+    "email": "s.bamba@example.com",
+    "téléphone": "+22501020306",
+    "localisation": "Bouaké, Côte d'Ivoire",
+    "disponibilité": ["Lundi-Vendredi 8h-17h"],
+    "certifications": ["certificat_geotechnique.pdf"],
+    "licenceProfessionnelle": "N° GEO-23456",
+    "statutVérification": "En attente",
+    "services": [
+      {
+        "idService": "srv-004",
+        "nomService": "Étude géotechnique complète",
+        "description": "Analyse approfondie des caractéristiques du sol.",
+        "tarif": 95000
+      }
+    ],
+    "avis": [
+      { "utilisateur": "Client E", "note": 4, "commentaire": "Bon travail." }
+    ],
+    "noteMoyenne": 4.0,
+    "dateInscription": "2025-08-01",
+    "dernièreConnexion": "2025-08-25",
+    "statutCompte": "Actif"
+  },
+  {
+    "id": "exp-10004",
+    "nom": "Mme. Traoré Aminata",
+    "photoProfil": "https://images.unsplash.com/photo-1582095133179-2988c65f01b3?w=150&h=150&fit=crop&crop=face",
+    "biographie": "Juriste spécialisée en droit foncier et fiscalité.",
+    "specialities": ["Droit foncier", "Fiscalité foncière"],
+    "filtreSpecialite": ["droit-fiscalite-fonciere"],
+    "langues": ["Français"],
+    "email": "a.traore@example.com",
+    "téléphone": "+22501020307",
+    "localisation": "Daloa, Côte d'Ivoire",
+    "disponibilité": ["Mercredi 10h-17h", "Vendredi 9h-15h"],
+    "certifications": ["certificat_droit_foncier.pdf"],
+    "licenceProfessionnelle": "N° DRT-11223",
+    "statutVérification": "Vérifié",
+    "services": [
+      {
+        "idService": "srv-005",
+        "nomService": "Conseil juridique foncier",
+        "description": "Accompagnement juridique dans les dossiers fonciers.",
+        "tarif": 70000
+      }
+    ],
+    "avis": [
+      { "utilisateur": "Client F", "note": 5, "commentaire": "Très compétente." }
+    ],
+    "noteMoyenne": 4.8,
+    "dateInscription": "2025-06-12",
+    "dernièreConnexion": "2025-08-20",
+    "statutCompte": "Actif"
+  },
+  {
+    "id": "exp-10005",
+    "nom": "M. Ouattara Idriss",
+    "photoProfil": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+    "biographie": "Géomètre topographe avec 10 ans d'expérience terrain.",
+    "specialities": ["Topographie", "Cadastre"],
+    "filtreSpecialite": ["geometre-topographie-cadastre"],
+    "langues": ["Français", "Anglais"],
+    "email": "i.ouattara@example.com",
+    "téléphone": "+22501020308",
+    "localisation": "Korhogo, Côte d'Ivoire",
+    "disponibilité": ["Lundi à Jeudi 8h-17h"],
+    "certifications": ["certificat_geometre.pdf"],
+    "licenceProfessionnelle": "N° GEO-33445",
+    "statutVérification": "Vérifié",
+    "services": [
+      {
+        "idService": "srv-006",
+        "nomService": "Levée topographique",
+        "description": "Mesure et cartographie précise du terrain.",
+        "tarif": 60000
+      }
+    ],
+    "avis": [
+      { "utilisateur": "Client G", "note": 4, "commentaire": "Bon travail, ponctuel." }
+    ],
+    "noteMoyenne": 4.2,
+    "dateInscription": "2025-05-10",
+    "dernièreConnexion": "2025-08-18",
+    "statutCompte": "Actif"
+  },
+  {
+    "id": "exp-10006",
+    "nom": "Mme. Koné Awa",
+    "photoProfil": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=150&h=150&fit=crop&crop=face",
+    "biographie": "Consultante en gestion et valorisation du foncier.",
+    "specialities": ["Gestion du foncier", "Valorisation immobilière"],
+    "filtreSpecialite": ["gestion-valorisation-foncier"],
+    "langues": ["Français"],
+    "email": "a.kone@example.com",
+    "téléphone": "+22501020309",
+    "localisation": "San Pedro, Côte d'Ivoire",
+    "disponibilité": ["Mardi & Jeudi 10h-17h"],
+    "certifications": ["certificat_valorisation.pdf"],
+    "licenceProfessionnelle": "N° FON-77889",
+    "statutVérification": "En attente",
+    "services": [
+      {
+        "idService": "srv-007",
+        "nomService": "Étude de valorisation foncière",
+        "description": "Conseils pour optimiser l'utilisation et la valeur du terrain.",
+        "tarif": 85000
+      }
+    ],
+    "avis": [
+      { "utilisateur": "Client H", "note": 5, "commentaire": "Très pertinente." }
+    ],
+    "noteMoyenne": 4.7,
+    "dateInscription": "2025-04-20",
+    "dernièreConnexion": "2025-08-10",
+    "statutCompte": "Actif"
+  },
+  {
+    "id": "exp-10007",
+    "nom": "Dr. Yao Albert",
+    "photoProfil": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=150&h=150&fit=crop&crop=face",
+    "biographie": "Expert en droit foncier et planification territoriale.",
+    "specialities": ["Droit foncier", "Aménagement territorial"],
+    "filtreSpecialite": ["droit-fiscalite-fonciere", "amenagement-urbanisme"],
+    "langues": ["Français"],
+    "email": "a.yao@example.com",
+    "téléphone": "+22501020310",
+    "localisation": "Man, Côte d'Ivoire",
+    "disponibilité": ["Mercredi et Vendredi 9h-16h"],
+    "certifications": ["certificat_droit.pdf"],
+    "licenceProfessionnelle": "N° DRF-55432",
+    "statutVérification": "Vérifié",
+    "services": [
+      {
+        "idService": "srv-008",
+        "nomService": "Conseil en droit foncier",
+        "description": "Assistance légale sur litiges et contrats fonciers.",
+        "tarif": 75000
+      }
+    ],
+    "avis": [
+      { "utilisateur": "Client I", "note": 4, "commentaire": "Bonne expertise." }
+    ],
+    "noteMoyenne": 4.3,
+    "dateInscription": "2025-03-05",
+    "dernièreConnexion": "2025-08-12",
+    "statutCompte": "Actif"
+  },
+  {
+    "id": "exp-10008",
+    "nom": "Mme. N'Dri Clarisse",
+    "photoProfil": "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=150&h=150&fit=crop&crop=face",
+    "biographie": "Urbaniste spécialisée dans les projets durables.",
+    "specialities": ["Urbanisme", "Développement durable"],
+    "filtreSpecialite": ["amenagement-urbanisme"],
+    "langues": ["Français", "Anglais"],
+    "email": "c.ndri@example.com",
+    "téléphone": "+22501020311",
+    "localisation": "Abengourou, Côte d'Ivoire",
+    "disponibilité": ["Lundi & Jeudi 8h-14h"],
+    "certifications": ["certificat_urbanisme_durable.pdf"],
+    "licenceProfessionnelle": "N° URB-90091",
+    "statutVérification": "Vérifié",
+    "services": [
+      {
+        "idService": "srv-009",
+        "nomService": "Planification urbaine durable",
+        "description": "Études et plans pour des villes écologiques.",
+        "tarif": 110000
+      }
+    ],
+    "avis": [
+      { "utilisateur": "Client J", "note": 5, "commentaire": "Professionnelle et engagée." }
+    ],
+    "noteMoyenne": 5.0,
+    "dateInscription": "2025-02-10",
+    "dernièreConnexion": "2025-08-21",
+    "statutCompte": "Actif"
+  }
+]

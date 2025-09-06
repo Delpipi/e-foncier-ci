@@ -11,6 +11,11 @@ tailwind.config = {
                     3: '#FEFAE0'
                 }
             },
+            fontFamily: {
+                jost: ['"Jost"', 'sans-serif'],
+                roboto: ['"Roboto"', 'sans-serif'],
+            },
+            
             fontSize: {
                 // Tailles personnalisées
                 'small': '1rem',
@@ -32,33 +37,48 @@ tailwind.config = {
                 'inner-lg': 'inset 0 8px 12px rgba(0, 0, 0, 0.1)', // Large inner shadow
             },
             animation: {
+                'float': 'float 3s ease infinite',
                 'fade-in': 'fadeIn 0.5s ease-in-out',
                 'vibrate-slow': 'vibrateSlow 1s linear',
-                'blink-1':  'blink1 5s linear 0s infinite normal none'
+                'blink-1': 'blink1 5s linear 0s infinite normal none'
             },
             keyframes: {
                 fadeIn: {
                     '0%': { opacity: '0' },
                     '100%': { opacity: '1' }
                 },
-                 vibrateSlow: {
+                vibrateSlow: {
                     '0%': {
-                    transform: 'translate(0, 0)',
+                        transform: 'translate(0, 0)',
                     },
                     '20%': {
-                    transform: 'translate(2px, -2px)',
+                        transform: 'translate(2px, -2px)',
                     },
                     '40%': {
-                    transform: 'translate(2px, 2px)',
+                        transform: 'translate(2px, 2px)',
                     },
                     '60%': {
-                    transform: 'translate(-2px, 2px)',
+                        transform: 'translate(-2px, 2px)',
                     },
                     '80%': {
-                    transform: 'translate(-2px, -2px)',
+                        transform: 'translate(-2px, -2px)',
                     },
                     '100%': {
-                    transform: 'translate(0, 0)',
+                        transform: 'translate(0, 0)',
+                    }
+                },
+                float: {
+                    '0%,100%': {
+                        transform: 'translateY(0)',
+                    },
+                    '25%': {
+                        transform: 'translateY(-10px)',
+                    },
+                    '50%':{
+                        transform: 'translateY(-5px)',
+                    },
+                    '75%': {
+                        transform: 'translateY(-15px)'
                     }
                 }
             }

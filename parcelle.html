@@ -10,14 +10,20 @@
     <meta name="author" content="Kouame Alexandre Paul">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.png" sizes="32x32" type="image/png">
-    
+
     <!--  base css  -->
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/base-large.css" media="screen and (min-width: 768px)">
 
     <!--  flowbite  -->
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
-    
+
+    <!--  mapbox  -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/3.14.0/mapbox-gl.min.css" rel="stylesheet">
+
+    <!--  font-awesome  -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
     <!--  google font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,9 +40,9 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Accueil</a></li>
-                    <li><a href="parcelles.html" class="active">Parcelles</a></li>
-                    <li><a href="experts.html">Experts</a></li>
-                    <li><a href="#">Plan</a></li>
+                    <li><a href="parcelle.html" class="active">Parcelles</a></li>
+                    <li><a href="expert.html">Experts</a></li>
+                    <li><a href="tarif.html">Tarifs</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
                 <ul>
@@ -46,15 +52,41 @@
             </nav>
         </div>
     </header>
-    <main>
+    <main class="text-gray-800">
         <div id="loader" class="fixed inset-0 flex items-center justify-center bg-white z-50">
             <div class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
         </div>
         <div id="main-content" class="hidden">
+            <!-- banner -->
+            <div class="bg-accent-1 relative w-full md:flex md:justify-evenly md:h-[400px]">
+                <div class="absolute bottom-5  p-small bg-white bg-opacity-80 md:bg-opacity-0 w-full z-[2] md:w-[500px] md:relative md:self-center ">
+                    <h1 class="text-xl md:font-semibold md:text-4xl 
+                            md:text-white">Visualisez les parcelles disponibles,
+                    </h1>
+                    <p class="md:text-white">consultez leurs détails et réservez en toute sécurité</p>
+                </div>
+                <div class="hidden container-title md:z-[1] md:block"></div>
+                <img src="images/portion-de-terre.webp" alt="Land Picture"
+                    class="px-small md:w-[400px] md:object-contain md:self-center md:animate-float">
+            </div>
+            <!-- filter -->
+            <div class=" flex flex-col gap-xsmall border border-gray-200 p-small rounded-lg m-small 
+                 md:mx-massive md:my-large md:flex-row md:justify-end">
+                <input type="text" id="searchInput" class="bg-gray-50 border 
+                border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2 md:w-[400px]" 
+                placeholder="Recherche Ville ou commune ou agence...">
+            </div>
+
+            <!-- content -->
+            <div class="p-small md:grid md:grid-cols-2 md:min-h-screen md:gap-medium">
+                <div id="map" class="hidden md:block" ></div> 
+                <div id="land-list" class="grid grid-cols-1 gap-small p-small border border-gray-200 rounded-lg
+                md:grid-cols-2"></div>
+            </div>
             
         </div>
     </main>
-    <footer>
+    <footer class="text-sm">
         <p>&copy; Copyright 2025 by <a href="https://adc-conseil.com">ADC CONSULTING</a></p>
         <p>Tous droits Réservés</p>
         <p class="flex gap-2">
@@ -67,7 +99,8 @@
                 </g>
             </svg>
             <svg fill="#ffffff" width="30px" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-143 145 512 512" xml:space="preserve" stroke="#ffffff">
+                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-143 145 512 512" xml:space="preserve"
+                stroke="#ffffff">
                 <g>
                     <path
                         d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M41.4,508.1H-8.5V348.4h49.9 V508.1z M15.1,328.4h-0.4c-18.1,0-29.8-12.2-29.8-27.7c0-15.8,12.1-27.7,30.5-27.7c18.4,0,29.7,11.9,30.1,27.7 C45.6,316.1,33.9,328.4,15.1,328.4z M241,508.1h-56.6v-82.6c0-21.6-8.8-36.4-28.3-36.4c-14.9,0-23.2,10-27,19.6 c-1.4,3.4-1.2,8.2-1.2,13.1v86.3H71.8c0,0,0.7-146.4,0-159.7h56.1v25.1c3.3-11,21.2-26.6,49.8-26.6c35.5,0,63.3,23,63.3,72.4V508.1z ">
@@ -82,6 +115,10 @@
     <script src="scripts/tailwind-config.js" defer></script>
     <!--  flowbite  -->
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+    <!--  mapbox  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/3.14.0/mapbox-gl.min.js"></script>
+    <script src="scripts/parcelle.js" type="module"></script>
 </body>
 
 </html>

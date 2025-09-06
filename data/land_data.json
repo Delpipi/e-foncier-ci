@@ -4,79 +4,88 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Abidjan Marcory",
-        "price": "12 000 000 / 9 000 000 FCFA",
-        "area": "600 / 500 m2",
-        "owner": "Groupe Ivoire",
-        "image": "images/abidjan_marcory.jpg",
+        "name": "Terrain à Abidjan Cocody",
+        "price": "18 000 000 / 15 000 000 FCFA",
+        "area": "600 / 500",
+        "owner": "Ivoire Immo",
+        "images": [
+            "https://img.freepik.com/photos-gratuite/paysage-terrain-cultive_1232-859.jpg", 
+            "https://img.freepik.com/photos-gratuite/paysage-terrain-cultive_1232-859.jpg", 
+            "https://img.freepik.com/photos-gratuite/paysage-terrain-cultive_1232-859.jpg",
+            "https://img.freepik.com/photos-gratuite/paysage-terrain-cultive_1232-859.jpg"
+        ],
         "polygon": {
           "type": "Polygon",
           "coordinates": [[
-            [-4.0129, 5.3098],
-            [-4.0125, 5.3099],
-            [-4.0124, 5.3095],
-            [-4.0127, 5.3094],
-            [-4.0129, 5.3098]
+            [-4.0015, 5.3500],
+            [-4.0010, 5.3501],
+            [-4.0008, 5.3497],
+            [-4.0012, 5.3495],
+            [-4.0015, 5.3500]
           ]]
         }
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-4.0126, 5.3097]
+        "coordinates": [-4.0012, 5.3498]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Yamoussoukro Quartier 220",
-        "price": "4 500 000 / 3 000 000 FCFA",
-        "area": "400 / 350 m2",
+        "name": "Terrain à Yamoussoukro Quartier Millionnaire",
+        "price": "5 000 000 / 3 500 000 FCFA",
+        "area": "400 / 350",
         "owner": "CI Terrains",
         "images": [
             "https://img.freepik.com/photos-gratuite/paysage-terrain-cultive_1232-859.jpg", 
             "https://img.freepik.com/photos-gratuite/paysage-terrain-cultive_1232-859.jpg", 
             "https://img.freepik.com/photos-gratuite/paysage-terrain-cultive_1232-859.jpg",
             "https://img.freepik.com/photos-gratuite/paysage-terrain-cultive_1232-859.jpg"
-          ],
+        ],
         "polygon": {
           "type": "Polygon",
           "coordinates": [[
-            [-5.2770, 6.8172],
-            [-5.2766, 6.8173],
-            [-5.2763, 6.8171],
-            [-5.2765, 6.8168],
-            [-5.2770, 6.8172]
+            [-5.2780, 6.8180],
+            [-5.2775, 6.8182],
+            [-5.2772, 6.8178],
+            [-5.2776, 6.8176],
+            [-5.2780, 6.8180]
           ]]
         }
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-5.2767, 6.8170]
+        "coordinates": [-5.2776, 6.8179]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Terrain à Daloa",
-        "price": "3 000 000 / 2 500 000 FCFA",
-        "area": "420 / 350 m2",
-        "owner": "Daloa Immo",
-        "image": "images/daloa.jpg",
+        "name": "Terrain à Bouaké Dar-es-Salam",
+        "price": "3 000 000 / 2 300 000 FCFA",
+        "area": "450 / 380",
+        "owner": "Bouaké Habitat",
+        "images": [
+            "https://img.freepik.com/photos-gratuite/paysage-terrain-cultive_1232-859.jpg", 
+            "https://img.freepik.com/photos-gratuite/paysage-terrain-cultive_1232-859.jpg", 
+            "https://img.freepik.com/photos-gratuite/paysage-terrain-cultive_1232-859.jpg",
+            "https://img.freepik.com/photos-gratuite/paysage-terrain-cultive_1232-859.jpg"
+        ],
         "polygon": {
           "type": "Polygon",
           "coordinates": [[
-            [-6.4506, 6.8776],
-            [-6.4503, 6.8779],
-            [-6.4500, 6.8776],
-            [-6.4501, 6.8773],
-            [-6.4504, 6.8772],
-            [-6.4506, 6.8776]
+            [-5.0335, 7.6900],
+            [-5.0330, 7.6902],
+            [-5.0327, 7.6898],
+            [-5.0332, 7.6896],
+            [-5.0335, 7.6900]
           ]]
         }
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-6.4503, 6.8774]
+        "coordinates": [-5.0332, 7.6899]
       }
     }
   ]

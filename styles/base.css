@@ -21,7 +21,6 @@
 
 h1,h2,h3,h4,h5{
     font-family: 'Jost', sans-serif;
-    font-weight: 700;
 }
 
 body{
@@ -128,6 +127,7 @@ dialog {
     padding: var(--small-size);
     width: 100%;
     z-index: 40;
+    
 }
 
 #main-menu.scrolled{
@@ -143,7 +143,8 @@ nav {
     overflow-y: auto;
     width: 250px;
     height: 100vh;
-    z-index: 50;
+    z-index: 100;
+    background-color: var(--accent-color1)
 }
 
 nav.open{
@@ -162,6 +163,8 @@ nav ul a{
     text-decoration: none;
     text-align: center;
     opacity: 0.2;
+    padding: var(--small-size);
+    border-bottom: 1px solid var(--primary-color);
 }
 
 nav ul a.active, nav ul a:hover{
@@ -184,6 +187,13 @@ nav ul a.active, nav ul a:hover{
 
 #menu.open::before {
     content: "X";
+}
+
+/**************************
+****** MAP STYLE *********
+***************************/
+#map{
+    display: none;
 }
 
 /**************************
