@@ -4,6 +4,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": 1,
         "name": "Terrain à Abidjan Cocody",
         "price": "18 000 000 / 15 000 000 FCFA",
         "area": "600 / 500",
@@ -33,6 +34,7 @@
     {
       "type": "Feature",
       "properties": {
+         "id": 2,
         "name": "Terrain à Yamoussoukro Quartier Millionnaire",
         "price": "5 000 000 / 3 500 000 FCFA",
         "area": "400 / 350",
@@ -62,6 +64,7 @@
     {
       "type": "Feature",
       "properties": {
+         "id": 3,
         "name": "Terrain à Bouaké Dar-es-Salam",
         "price": "3 000 000 / 2 300 000 FCFA",
         "area": "450 / 380",
